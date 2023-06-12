@@ -1,7 +1,6 @@
 
 package game;
 import java.util.*;
-
 public class GameBoard {
     public int[][] board;
     private int currentPlayer;
