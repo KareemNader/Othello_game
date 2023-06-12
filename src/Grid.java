@@ -107,5 +107,118 @@ public class Grid extends JFrame {
         p2.setBackground(new Color(240, 240, 242));
         setVisible(true); 
     }
+   
+     public static void printBoard(){
+        for(int i=0 ; i<8 ; i++){
+            for(int j=0 ; j<8 ; j++){
+                if(gameBoard.board[i][j]==1)
+                  buttons[i][j].setIcon(white_icon);
+                else if(gameBoard.board[i][j]== -1)
+                  buttons[i][j].setIcon(black_icon);
+            }
+        }
+    }
     
+    public static void  Ai_play(){
+        int [] move = Ai_agent.getNextMove(gameBoard);
+        gameBoard.makeMove(move);
+    }
+    
+    public static void print_valid_moves(){
+        ArrayList<int[]> validMoves = gameBoard.getValidMoves();
+        for(int[] move : validMoves){
+            buttons[move[0]][move[1]].setBackground(Color.GRAY);
+        }
+    }
+    
+    public static void reset_buttons(){
+        for(int i=0 ; i<8 ; i++)
+            for(int j=0 ; j<8 ; j++)
+                buttons[i][j].setBackground(Color.WHITE);
+    }
+    
+    public static boolean isFull(){
+        for(int i=0 ; i<8 ; i++)
+            for(int j=0 ; j<8 ; j++)
+                if(gameBoard.board[i][j] == 0 )
+                    return false ;
+        return true ; 
+    }
+    
+   public void home_btn_fn(){
+       new HomePage().setVisible(true);
+       this.dispose();
+   }
+   
+   public void restart_btn_fn(){
+        Grid g = new Grid(this.Ai_agent.getdifficulty(),this.mode ) ;
+        g.grid = grid ;
+        this.dispose();
+   }
+    
+   public static void gameOver(){
+       if(gameBoard.getScore()>=0)
+                JOptionPane.showMessageDialog(grid, "WHITE PLAYER WON", "RESULT", JOptionPane.INFORMATION_MESSAGE);
+            else
+                JOptionPane.showMessageDialog(grid, "BLACK PLAYER WON", "RESULT", JOptionPane.INFORMATION_MESSAGE);
+   }
+   
+}
+ public static void printBoard(){
+        
+        for(int i=0 ; i<8 ; i++){
+            for(int j=0 ; j<8 ; j++){
+                if(gameBoard.board[i][j]==1)
+                  buttons[i][j].setIcon(white_icon);
+                else if(gameBoard.board[i][j]== -1)
+                  buttons[i][j].setIcon(black_icon);
+            }
+        }
+    }
+    
+    public static void  Ai_play(){
+        int [] move = Ai_agent.getNextMove(gameBoard);
+        gameBoard.makeMove(move);
+    }
+    
+    public static void print_valid_moves(){
+        ArrayList<int[]> validMoves = gameBoard.getValidMoves();
+        for(int[] move : validMoves){
+            buttons[move[0]][move[1]].setBackground(Color.GRAY);
+        }
+    }
+    
+    public static void reset_buttons(){
+        for(int i=0 ; i<8 ; i++)
+            for(int j=0 ; j<8 ; j++)
+                buttons[i][j].setBackground(Color.WHITE);
+    }
+    
+    public static boolean isFull(){
+        for(int i=0 ; i<8 ; i++)
+            for(int j=0 ; j<8 ; j++)
+                if(gameBoard.board[i][j] == 0 )
+                    return false ;
+        return true ; 
+    }
+    
+   public void home_btn_fn(){
+       new HomePage().setVisible(true);
+       this.dispose();
+   }
+   
+   public void restart_btn_fn(){
+        Grid g = new Grid(this.Ai_agent.getdifficulty(),this.mode ) ;
+        g.grid = grid ;
+        this.dispose();
+   }
+    
+   public static void gameOver(){
+       if(gameBoard.getScore()>=0)
+                JOptionPane.showMessageDialog(grid, "WHITE PLAYER WON", "RESULT", JOptionPane.INFORMATION_MESSAGE);
+            else
+                JOptionPane.showMessageDialog(grid, "BLACK PLAYER WON", "RESULT", JOptionPane.INFORMATION_MESSAGE);
+   }
+   
+}
    
